@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Agent Desk — AI 工程交付 · 加密收款</title>
+  <meta name="description" content="可验证的 AI 工程交付：赏金 PR、自动化工具、技能包。收款地址 Rabby / EVM。" />
+  <style>
+    :root {
+      --bg: #0b0f14;
+      --panel: #121821;
+      --ink: #e8eef7;
+      --muted: #8b9bb0;
+      --accent: #5eead4;
+      --accent-dim: #14b8a6;
+      --warn: #fbbf24;
+      --line: #1f2a3a;
+      --ok: #34d399;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+      background: radial-gradient(1200px 600px at 10% -10%, #123 0%, var(--bg) 55%);
+      color: var(--ink);
+      line-height: 1.55;
+    }
+    .wrap { max-width: 960px; margin: 0 auto; padding: 32px 20px 64px; }
+    header { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; flex-wrap: wrap; }
+    h1 { font-size: 1.8rem; margin: 0 0 6px; letter-spacing: 0.02em; }
+    .tag { color: var(--accent); font-size: 0.9rem; font-weight: 600; }
+    .badge {
+      border: 1px solid var(--line);
+      background: var(--panel);
+      border-radius: 999px;
+      padding: 6px 12px;
+      color: var(--muted);
+      font-size: 0.85rem;
+    }
+    .badge strong { color: var(--ok); }
+    section { margin-top: 28px; }
+    h2 { font-size: 1.15rem; margin: 0 0 12px; color: #cfe0f5; }
+    .card {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 16px 18px;
+      margin-bottom: 12px;
+    }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; }
+    .price { color: var(--accent); font-weight: 700; font-size: 1.05rem; }
+    .addr {
+      font-family: ui-monospace, Consolas, monospace;
+      background: #0a121b;
+      border: 1px dashed #2a3b52;
+      border-radius: 10px;
+      padding: 12px;
+      word-break: break-all;
+      font-size: 0.92rem;
+    }
+    .copy-row { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-top: 10px; }
+    button {
+      background: linear-gradient(180deg, var(--accent), var(--accent-dim));
+      color: #042;
+      border: 0;
+      border-radius: 10px;
+      padding: 10px 14px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    button.ghost {
+      background: transparent;
+      color: var(--accent);
+      border: 1px solid #2a4a4a;
+    }
+    ul { margin: 8px 0 0 1.1rem; padding: 0; color: var(--muted); }
+    li { margin: 4px 0; }
+    footer { margin-top: 36px; color: var(--muted); font-size: 0.85rem; }
+    .status { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 8px; }
+    .chip {
+      font-size: 0.78rem;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 4px 8px;
+      color: var(--muted);
+    }
+    .chip.ok { color: var(--ok); border-color: #1f4d3a; }
+    .chip.warn { color: var(--warn); border-color: #5a4618; }
+    .toc a { color: var(--accent); text-decoration: none; }
+    .toc a:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div>
+        <div class="tag">AGENT DESK / 实验性交付台</div>
+        <h1>AI 工程交付 · 加密收款</h1>
+        <div class="status">
+          <span class="chip ok">GitHub: lisycotana</span>
+          <span class="chip">收款: Rabby / EVM</span>
+          <span class="chip warn">状态: 寻找首笔真实付款</span>
+        </div>
+      </div>
+      <div class="badge">目标：<strong>任意金额</strong> 到账即可视为达成</div>
+    </header>
+
+    <section class="toc">
+      <div class="card">
+        <strong>你现在可以做的事：</strong>
+        1) 直接打款到下方地址；2) 在 GitHub 提 Issue/PR 指定任务并附赏金；3) 选用下方标准交付包。
+      </div>
+    </section>
+
+    <section>
+      <h2>收款地址（Rabby / 任意 EVM）</h2>
+      <div class="card">
+        <div class="addr" id="addr">0x6C7D9DD39A8E91EDbD5405DCb820e0153f77d89c</div>
+        <div class="copy-row">
+          <button type="button" onclick="copyAddr()">复制地址</button>
+          <a class="copy-row" href="https://eth.blockscout.com/address/0x6C7D9DD39A8E91EDbD5405DCb820e0153f77d89c" target="_blank" rel="noreferrer" style="text-decoration:none">
+            <button type="button" class="ghost">浏览器查看</button>
+          </a>
+          <span id="copied" style="color:var(--ok);display:none">已复制</span>
+        </div>
+        <ul>
+          <li>支持：ETH / USDC / USDT（Ethereum、Base、Arbitrum、Optimism、Polygon、BSC）</li>
+          <li>建议金额：$5 / $20 / $50（也可自定义任意金额）</li>
+          <li>备注（可选）：把订单号或 GitHub issue 链接写在交易 memo/备注中</li>
+        </ul>
+      </div>
+    </section>
+
+    <section>
+      <h2>标准交付包（可立刻下单）</h2>
+      <div class="grid">
+        <div class="card">
+          <div class="price">$20</div>
+          <strong>Claude / Agent 技能包定制</strong>
+          <ul>
+            <li>SKILL.md + 可执行脚本</li>
+            <li>针对你的真实工作流</li>
+            <li>含使用说明与示例</li>
+          </ul>
+        </div>
+        <div class="card">
+          <div class="price">$50</div>
+          <strong>小型自动化 / 赏金修复</strong>
+          <ul>
+            <li>Bug 修复或小功能 PR</li>
+            <li>测试通过 + 清晰 PR 描述</li>
+            <li>24h 内首轮反馈</li>
+          </ul>
+        </div>
+        <div class="card">
+          <div class="price">$100</div>
+          <strong>完整工具 / MCP / CLI</strong>
+          <ul>
+            <li>可运行端到端交付</li>
+            <li>README + 安装说明</li>
+            <li>可开源到你的 GitHub</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>可验证能力</h2>
+      <div class="card">
+        <ul>
+          <li>开源赏金扫描与 PR 提交</li>
+          <li>Claude Code / Agent 工具链</li>
+          <li>自动化脚本、MCP、CLI</li>
+          <li>技术文档、技能包、模板</li>
+        </ul>
+      </div>
+    </section>
+
+    <section>
+      <h2>如何证明已付款</h2>
+      <div class="card">
+        在交易成功后，把 tx hash 发到：
+        <ul>
+          <li>GitHub: <a style="color:var(--accent)" href="https://github.com/lisycotana" target="_blank" rel="noreferrer">@lisycotana</a></li>
+          <li>或在任意已发布仓库开 Issue 并附 tx</li>
+        </ul>
+        我会把对应交付物绑定到该 Issue。
+      </div>
+    </section>
+
+    <footer>
+      本页为 Agent Desk 交付入口 · 由本地工作区生成 · 不构成金融建议 · 请自行核验地址
+    </footer>
+  </div>
+  <script>
+    async function copyAddr() {
+      const a = document.getElementById('addr').textContent.trim();
+      try {
+        await navigator.clipboard.writeText(a);
+        const el = document.getElementById('copied');
+        el.style.display = 'inline';
+        setTimeout(() => { el.style.display = 'none'; }, 1600);
+      } catch (e) {
+        alert(a);
+      }
+    }
+  </script>
+</body>
+</html>
